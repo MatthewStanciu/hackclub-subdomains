@@ -2,8 +2,8 @@ require 'octokit'
 require 'base64'
 require 'yaml'
 
-$client = Octokit::Client.new(:login => 'MatthewStanciu', :password => 'my-password')
-contents = $client.contents("MatthewStanciu/test-yml", :path => "domains.yml")
+$client = Octokit::Client.new(:login => 'OrpheusUser', :password => 'OrpheusPass')
+contents = $client.contents("hackclub/dns", :path => "hackclub.com.yaml")
 $decoded_content = Base64.decode64(contents.content)
 
 def append_subdomain(subdomain, host)
@@ -19,10 +19,9 @@ def append_subdomain(subdomain, host)
 end
 
 def update_file_on_github(subdomain, content)
-  blob_sha = "929696e489010e0bd421af4f6a0aba2bbf486c06"
-
-  $client.update_contents("MatthewStanciu/test-yml", "domains.yml", "add subdomain #{subdomain}", blob_sha, content)
+  blob_sha = "f40f8454ffdd0392f0610f8687a29a2c9cca2305"
+  $client.update_contents("hackclub/dns", "hackclub.com.yaml", "add subdomain #{subdomain}", blob_sha, content)
 end
 
-append_subdomain("cegg2ge2e", "wlcat.club")
-#append_subdomain("kekehehe", "wlcat.club")
+# usage: append_subdomain("requested-subdomain", "where-its-hosted")
+# append_subdomain("cegg2ge2e", "wlcat.club")
