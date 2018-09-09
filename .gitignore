@@ -1,3 +1,4 @@
 .env
 Gemfile
 Gemfile.lock
+vals.yml
