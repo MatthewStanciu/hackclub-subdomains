@@ -8,16 +8,6 @@ client = Octokit::Client.new(:login => 'MatthewStanciu', :password => 'my-passwo
 contents = client.contents("hackclub/dns", :path => "hackclub.com.yaml")
 $decoded_content = Base64.decode64(contents.content)
 
-def returning(value)
-  yield(value)
-  value
-end
-
-#hash = YAML.load_file("test.yml")
-#hash1 = Hash[ hash.sort_by { |key, val| key } ]
-#puts hash1
-#puts sort_yaml_file(thing.inspect)
-
 def append_subdomain(subdomain, host)
   new_content = $decoded_content + subdomain + ":\n  ttl: 1\n  type: CNAME\n  value: " + host + "."
   val_file = File.exist?("vals.yml") ? YAML.load_file("vals.yml") : File.new("vals.yml", "w")
