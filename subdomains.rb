@@ -17,11 +17,8 @@ def append_subdomain(subdomain, host)
   else
     message = "add subdomain #{subdomain}"
   end
-  update_file_on_github(subdomain, sorted.to_yaml, message)
-end
 
-def update_file_on_github(content, message)
-  $client.update_contents("hackclub/dns", "hackclub.com.yaml", message, $blob_sha, content)
+  $client.update_contents("hackclub/dns", "hackclub.com.yaml", message, $blob_sha, sorted.to_yaml)
 end
 
 # usage: append_subdomain("requested-subdomain", "where-its-hosted")
