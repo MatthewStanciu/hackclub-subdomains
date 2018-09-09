@@ -20,7 +20,7 @@ def append_subdomain(subdomain, host)
   update_file_on_github(subdomain, sorted.to_yaml, message)
 end
 
-def update_file_on_github(subdomain, content, message)
+def update_file_on_github(content, message)
   $client.update_contents("hackclub/dns", "hackclub.com.yaml", message, $blob_sha, content)
 end
 
