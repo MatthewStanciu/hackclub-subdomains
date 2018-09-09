@@ -12,7 +12,6 @@ def append_subdomain(subdomain, host)
   new_content = YAML.load($decoded_content + subdomain + ":\n  ttl: 1\n  type: CNAME\n  value: " + host + ".")
   sorted = Hash[ new_content.sort_by { |key, val| key } ]
 
-  puts $decoded_content[subdomain]
   if $decoded_content[subdomain] != nil
     message = "update subdomain #{subdomain}"
   else
